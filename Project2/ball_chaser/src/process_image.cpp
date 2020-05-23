@@ -27,8 +27,8 @@ void process_image_callback(const sensor_msgs::Image img)
 	int step = img.step;
 
     // TODO: Loop through each pixel in the image and check if there's a bright white one
- 	for (int i = 0; i < img.height * step; i++) {
-        if (img.data[i] == white_pixel) {
+ 	for (int i = 0; i < img.height * step; i=i+3) {
+        if (img.data[i] == white_pixel && img.data[i+1] == white_pixel && img.data[i+2] == white_pixel) { //checking RGB
             white_pixel_present = true;
 			location_index = i;
             break;
